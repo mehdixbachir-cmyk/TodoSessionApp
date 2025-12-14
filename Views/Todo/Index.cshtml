@@ -1,0 +1,42 @@
+﻿@model List<TodoSessionApp.Models.Todo>
+
+<h2>Liste des Tâches</h2>
+
+<a href="/Todo/Add">➕ Ajouter une tâche</a>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Libelle</th>
+        <th>Description</th>
+        <th>État</th>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        var todo = Model[i];
+
+        string style = "";
+        if (todo.State == "Done")
+        {
+            style = "text-decoration: line-through;";
+        }
+
+        if (todo.Date < DateTime.Now)
+        {
+            style += "color:red;";
+        }
+
+        <tr style="@style">
+            <td>@todo.Libelle</td>
+            <td>@todo.Description</td>
+            <td>@todo.State</td>
+            <td>@todo.Date.ToShortDateString()</td>
+            <td>
+                <a href="/Todo/Edit/@i">✏️ Edit</a> |
+                <a href="/Todo/Delete/@i" onclick="return confirm('Supprimer ?')">🗑️ Delete</a>
+            </td>
+        </tr>
+    }
+</table>
