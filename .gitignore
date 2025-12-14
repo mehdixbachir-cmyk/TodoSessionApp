@@ -1,9 +1,0 @@
-﻿## Visual Studio
-.vs/
-bin/
-obj/
-*.user
-*.suo
-
-## ASP.NET Core
-appsettings.Development.json
